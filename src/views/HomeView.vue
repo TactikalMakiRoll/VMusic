@@ -63,9 +63,9 @@
         </div>
       </section>
       <!-- Trending songs -->
-      <section class="mt-16">
+      <section class="mt-16 min-h-0 flex-1">
         <h2 class="text-xl font-bold capitalize">Trending Right Now</h2>
-        <div class="mt-9 h-full grow-0 snap-end overflow-y-scroll">
+        <div class="mt-9 max-h-[calc(100%-5rem)] snap-y snap-end snap-always overflow-y-scroll">
           <div class="flex items-center">
             <div class="flex items-center">
               <h4 class="mr-6 text-lg font-bold text-[rgba(133,133,134,1)]">01</h4>
@@ -75,7 +75,9 @@
               <h3 class="font-bold text-[rgb(214,214,214)]">Millions</h3>
               <p>Always never</p>
             </div>
-            <div class="ml-auto flex items-center gap-16 capitalize text-[rgba(154,154,154,1)]">
+            <div
+              class="ml-auto mr-16 flex items-center gap-16 capitalize text-[rgba(154,154,154,1)]"
+            >
               <p>Always never</p>
               <p>8.069 542</p>
               <p>3:58</p>
@@ -91,7 +93,9 @@
               <h3 class="font-bold text-[rgb(214,214,214)]">Millions</h3>
               <p>Always never</p>
             </div>
-            <div class="ml-auto flex items-center gap-16 capitalize text-[rgba(154,154,154,1)]">
+            <div
+              class="ml-auto mr-16 flex items-center gap-16 capitalize text-[rgba(154,154,154,1)]"
+            >
               <p>Always never</p>
               <p>8.069 542</p>
               <p>3:58</p>
@@ -107,7 +111,9 @@
               <h3 class="font-bold text-[rgb(214,214,214)]">Millions</h3>
               <p>Always never</p>
             </div>
-            <div class="ml-auto flex items-center gap-16 capitalize text-[rgba(154,154,154,1)]">
+            <div
+              class="ml-auto mr-16 flex items-center gap-16 capitalize text-[rgba(154,154,154,1)]"
+            >
               <p>Always never</p>
               <p>8.069 542</p>
               <p>3:58</p>
@@ -123,7 +129,9 @@
               <h3 class="font-bold text-[rgb(214,214,214)]">Millions</h3>
               <p>Always never</p>
             </div>
-            <div class="ml-auto flex items-center gap-16 capitalize text-[rgba(154,154,154,1)]">
+            <div
+              class="ml-auto mr-16 flex items-center gap-16 capitalize text-[rgba(154,154,154,1)]"
+            >
               <p>Always never</p>
               <p>8.069 542</p>
               <p>3:58</p>
@@ -133,7 +141,7 @@
         </div>
       </section>
       <!-- Recent Favourites -->
-      <section class="mt-16">
+      <section class="">
         <h2 class="text-xl font-bold capitalize">Recent Favourites</h2>
       </section>
     </main>
