@@ -2,7 +2,7 @@
   <div class="flex">
     <NavBar></NavBar>
     <!-- Central part -->
-    <main class="grow py-10 px-8">
+    <main class="flex h-screen grow flex-col py-10 px-8">
       <!-- Search bar and profile -->
       <div class="flex gap-9">
         <input
@@ -22,7 +22,7 @@
       </div>
       <!-- Albums -->
       <section class="mt-16">
-        <h2 class="text-lg font-bold">Recently Listened Albums</h2>
+        <h2 class="text-xl font-bold capitalize">Recently Listened Albums</h2>
         <div class="mt-8 flex gap-5">
           <div
             class="flex aspect-[1.4] grow flex-col overflow-hidden rounded-lg brightness-90"
@@ -64,89 +64,77 @@
       </section>
       <!-- Trending songs -->
       <section class="mt-16">
-        <h2 class="text-lg font-bold">Trending Right Now</h2>
-        <div>
-          <div>
-            <div>
-              <h4>01</h4>
-              <img src="images/trackCover.jpg" alt="song image" />
+        <h2 class="text-xl font-bold capitalize">Trending Right Now</h2>
+        <div class="mt-9 h-full grow-0 snap-end overflow-y-scroll">
+          <div class="flex items-center">
+            <div class="flex items-center">
+              <h4 class="mr-6 text-lg font-bold text-[rgba(133,133,134,1)]">01</h4>
+              <img class="h-20 w-20 rounded-sm" src="images/trackCover.jpg" alt="song image" />
             </div>
-            <div>
-              <h3>Millions</h3>
+            <div class="ml-5 capitalize text-[rgba(154,154,154,1)]">
+              <h3 class="font-bold text-[rgb(214,214,214)]">Millions</h3>
               <p>Always never</p>
             </div>
-            <div>
+            <div class="ml-auto flex items-center gap-16 capitalize text-[rgba(154,154,154,1)]">
               <p>Always never</p>
-              <p>8.069.542</p>
+              <p>8.069 542</p>
               <p>3:58</p>
-              <button><img src="icons/like.svg" alt="like image" /></button>
+              <button><img class="mb-0.5 h-6 w-6" src="icons/like.svg" alt="like image" /></button>
             </div>
           </div>
-          <div>
-            <div>
-              <h4>02</h4>
-              <img src="images/trackCover.jpg" alt="song image" />
+          <div class="mt-9 flex items-center">
+            <div class="flex items-center">
+              <h4 class="mr-6 text-lg font-bold text-[rgba(133,133,134,1)]">01</h4>
+              <img class="h-20 w-20 rounded-sm" src="images/trackCover.jpg" alt="song image" />
             </div>
-            <div>
-              <h3>If You Let Me</h3>
-              <p>Alina Baraz</p>
+            <div class="ml-5 capitalize text-[rgba(154,154,154,1)]">
+              <h3 class="font-bold text-[rgb(214,214,214)]">Millions</h3>
+              <p>Always never</p>
             </div>
-            <div>
-              <p>SunBeam</p>
-              <p>1.029.293</p>
-              <p>2:15</p>
-              <button><img src="icons/like.svg" alt="like image" /></button>
-            </div>
-          </div>
-          <div>
-            <div>
-              <h4>03</h4>
-              <img src="images/trackCover.jpg" alt="song image" />
-            </div>
-            <div>
-              <h3>It's everyday bro</h3>
-              <p>Logan Paul</p>
-            </div>
-            <div>
-              <p>Logan TT</p>
-              <p>5.000.000</p>
-              <p>2:40</p>
-              <button><img src="icons/like.svg" alt="like image" /></button>
+            <div class="ml-auto flex items-center gap-16 capitalize text-[rgba(154,154,154,1)]">
+              <p>Always never</p>
+              <p>8.069 542</p>
+              <p>3:58</p>
+              <button><img class="mb-0.5 h-6 w-6" src="icons/like.svg" alt="like image" /></button>
             </div>
           </div>
-          <div>
-            <div>
-              <h4>04</h4>
-              <img src="images/trackCover.jpg" alt="song image" />
+          <div class="mt-9 flex items-center">
+            <div class="flex items-center">
+              <h4 class="mr-6 text-lg font-bold text-[rgba(133,133,134,1)]">01</h4>
+              <img class="h-20 w-20 rounded-sm" src="images/trackCover.jpg" alt="song image" />
             </div>
-            <div>
-              <h3>It's everyday bro</h3>
-              <p>Logan Paul</p>
+            <div class="ml-5 capitalize text-[rgba(154,154,154,1)]">
+              <h3 class="font-bold text-[rgb(214,214,214)]">Millions</h3>
+              <p>Always never</p>
             </div>
-            <div>
-              <p>Logan TT</p>
-              <p>5.000.000</p>
-              <p>2:40</p>
-              <button><img src="icons/like.svg" alt="like image" /></button>
+            <div class="ml-auto flex items-center gap-16 capitalize text-[rgba(154,154,154,1)]">
+              <p>Always never</p>
+              <p>8.069 542</p>
+              <p>3:58</p>
+              <button><img class="mb-0.5 h-6 w-6" src="icons/like.svg" alt="like image" /></button>
             </div>
           </div>
-          <div>
-            <div>
-              <h4>05</h4>
-              <img src="images/trackCover.jpg" alt="song image" />
+          <div class="mt-9 flex items-center">
+            <div class="flex items-center">
+              <h4 class="mr-6 text-lg font-bold text-[rgba(133,133,134,1)]">01</h4>
+              <img class="h-20 w-20 rounded-sm" src="images/trackCover.jpg" alt="song image" />
             </div>
-            <div>
-              <h3>It's everyday bro</h3>
-              <p>Logan Paul</p>
+            <div class="ml-5 capitalize text-[rgba(154,154,154,1)]">
+              <h3 class="font-bold text-[rgb(214,214,214)]">Millions</h3>
+              <p>Always never</p>
             </div>
-            <div>
-              <p>Logan TT</p>
-              <p>5.000.000</p>
-              <p>2:40</p>
-              <button><img src="icons/like.svg" alt="like image" /></button>
+            <div class="ml-auto flex items-center gap-16 capitalize text-[rgba(154,154,154,1)]">
+              <p>Always never</p>
+              <p>8.069 542</p>
+              <p>3:58</p>
+              <button><img class="mb-0.5 h-6 w-6" src="icons/like.svg" alt="like image" /></button>
             </div>
           </div>
         </div>
+      </section>
+      <!-- Recent Favourites -->
+      <section class="mt-16">
+        <h2 class="text-xl font-bold capitalize">Recent Favourites</h2>
       </section>
     </main>
   </div>
@@ -186,7 +174,7 @@ function createGradientStops() {
     '--tw-gradient-from': fromColor,
     '--tw-gradient-via': viaColor,
     '--tw-gradient-to': toColor,
-    '--tw-gradient-stops': 'var(--tw-gradient-from), var(--tw-gradient-to), var(--tw-gradient-to)',
+    '--tw-gradient-stops': 'var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to)',
     'background-image':
       'linear-gradient(' +
       gradientDirections[Math.floor(Math.random() * 7)] +
