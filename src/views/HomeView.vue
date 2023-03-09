@@ -63,7 +63,9 @@
         </div>
       </section>
       <!-- Trending songs -->
-      <section class="mt-16 min-h-0 flex-1">
+      <section
+        class="mt-16 min-h-0 flex-1 [mask-image:linear-gradient(180deg,black_0%,black_75%,transparent_100%)]"
+      >
         <h2 class="text-xl font-bold capitalize">Trending Right Now</h2>
         <div class="mt-9 max-h-[calc(100%-5rem)] snap-y snap-end snap-always overflow-y-scroll">
           <div class="flex items-center">
@@ -142,7 +144,17 @@
       </section>
       <!-- Recent Favourites -->
       <section class="">
-        <h2 class="text-xl font-bold capitalize">Recent Favourites</h2>
+        <div class="flex">
+          <h2 class="text-xl font-bold capitalize">Recent Favourites</h2>
+          <button class="ml-auto text-[rgba(0,178,255,1)]">View all</button>
+        </div>
+        <div class="mt-9 flex h-32 w-32">
+          <div>
+            <img src="images/trackCover.jpg" alt="song cover" />
+            <h3 class="">Alone With You</h3>
+            <p>Alina Baraz</p>
+          </div>
+        </div>
       </section>
     </main>
   </div>
