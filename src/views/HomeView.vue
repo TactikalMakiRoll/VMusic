@@ -1,8 +1,8 @@
 <template>
   <div class="flex">
-    <NavBar></NavBar>
+    <NavBar class="shrink-0"></NavBar>
     <!-- Central part -->
-    <main class="flex h-screen grow flex-col py-10 px-8">
+    <main class="flex h-screen grow flex-col overflow-hidden py-10 px-8">
       <!-- Search bar and profile -->
       <div class="flex gap-9">
         <input
@@ -67,7 +67,7 @@
         class="mt-16 min-h-0 flex-1 [mask-image:linear-gradient(180deg,black_0%,black_75%,transparent_100%)]"
       >
         <h2 class="text-xl font-bold capitalize">Trending Right Now</h2>
-        <div class="mt-9 max-h-[calc(100%-5rem)] snap-y snap-end snap-always overflow-y-scroll">
+        <div class="mt-9 max-h-[calc(100%-5rem)] snap-y snap-end snap-always overflow-y-auto">
           <div class="flex items-center">
             <div class="flex items-center">
               <h4 class="mr-6 text-lg font-bold text-[rgba(133,133,134,1)]">01</h4>
@@ -143,16 +143,103 @@
         </div>
       </section>
       <!-- Recent Favourites -->
-      <section class="">
+      <section class="flex w-full shrink-0 flex-col">
         <div class="flex">
           <h2 class="text-xl font-bold capitalize">Recent Favourites</h2>
           <button class="ml-auto text-[rgba(0,178,255,1)]">View all</button>
         </div>
-        <div class="mt-9 flex h-32 w-32">
+        <div
+          id="favSongs"
+          class="scrollbar-hide mt-9 flex w-full grow-0 flex-nowrap gap-9 overflow-x-auto scroll-smooth pb-2 [mask-image:linear-gradient(90deg,black_0%,black_65%,transparent_100%)]"
+          @wheel="horizontalScroll($event)"
+        >
           <div>
-            <img src="images/trackCover.jpg" alt="song cover" />
-            <h3 class="">Alone With You</h3>
-            <p>Alina Baraz</p>
+            <div class="relative h-32 w-32">
+              <img
+                class="absolute top-0 left-0 h-full w-full object-cover"
+                src="images/trackCover.jpg"
+                alt="song cover"
+              />
+            </div>
+            <h3 class="mt-4 font-bold">Alone With You</h3>
+            <p class="text-[rgba(133,133,134,1)]">Alina Baraz</p>
+          </div>
+          <div>
+            <div class="relative h-32 w-32">
+              <img
+                class="absolute top-0 left-0 h-full w-full object-cover"
+                src="images/trackCover.jpg"
+                alt="song cover"
+              />
+            </div>
+            <h3 class="mt-4 font-bold">Alone With You</h3>
+            <p class="text-[rgba(133,133,134,1)]">Alina Baraz</p>
+          </div>
+          <div>
+            <div class="relative h-32 w-32">
+              <img
+                class="absolute top-0 left-0 h-full w-full object-cover"
+                src="images/trackCover.jpg"
+                alt="song cover"
+              />
+            </div>
+            <h3 class="mt-4 font-bold">Alone With You</h3>
+            <p class="text-[rgba(133,133,134,1)]">Alina Baraz</p>
+          </div>
+          <div>
+            <div class="relative h-32 w-32">
+              <img
+                class="absolute top-0 left-0 h-full w-full object-cover"
+                src="images/trackCover.jpg"
+                alt="song cover"
+              />
+            </div>
+            <h3 class="mt-4 font-bold">Alone With You</h3>
+            <p class="text-[rgba(133,133,134,1)]">Alina Baraz</p>
+          </div>
+          <div>
+            <div class="relative h-32 w-32">
+              <img
+                class="absolute top-0 left-0 h-full w-full object-cover"
+                src="images/trackCover.jpg"
+                alt="song cover"
+              />
+            </div>
+            <h3 class="mt-4 font-bold">Alone With You</h3>
+            <p class="text-[rgba(133,133,134,1)]">Alina Baraz</p>
+          </div>
+          <div>
+            <div class="relative h-32 w-32">
+              <img
+                class="absolute top-0 left-0 h-full w-full object-cover"
+                src="images/trackCover.jpg"
+                alt="song cover"
+              />
+            </div>
+            <h3 class="mt-4 font-bold">Alone With You</h3>
+            <p class="text-[rgba(133,133,134,1)]">Alina Baraz</p>
+          </div>
+          <div>
+            <div class="relative h-32 w-32">
+              <img
+                class="absolute top-0 left-0 h-full w-full object-cover"
+                src="images/trackCover.jpg"
+                alt="song cover"
+              />
+            </div>
+            <h3 class="mt-4 font-bold">Alone With You</h3>
+            <p class="text-[rgba(133,133,134,1)]">Alina Baraz</p>
+          </div>
+          <div>
+            <div class="relative h-32 w-32">
+              <img
+                class="absolute top-0 left-0 h-full w-full object-cover"
+                src="images/trackCover.jpg"
+                alt="song cover"
+              />
+            </div>
+            <h3 class="mt-4 font-bold">Alone With You</h3>
+            <p class="text-[rgba(133,133,134,1)]">Alina Baraz</p>
           </div>
         </div>
       </section>
@@ -201,4 +288,28 @@ function createGradientStops() {
       ', var(--tw-gradient-stops))'
   };
 }
+
+function debounce(func, waitTime = 250) {
+  let timeout;
+  return (...args) => {
+    console.log(timeout);
+    if (!timeout) {
+      func.apply(this, args);
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        timeout = null;
+      }, waitTime);
+    }
+  };
+}
+
+const horizontalScroll = debounce((e, ...args) => {
+  if (e.deltaY > 0) {
+    e.currentTarget.scrollBy({ left: +200, behaviour: 'smooth' });
+    e.preventDefault();
+  } else {
+    e.currentTarget.scrollBy({ left: -200, behaviour: 'smooth' });
+    e.preventDefault();
+  }
+}, 350);
 </script>

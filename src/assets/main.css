@@ -8,7 +8,6 @@ html{
   --scrollbar-primary:  rgba(32,32,34);
 }
 
-
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--scrollbar-secondary) var(--scrollbar-primary);
@@ -17,6 +16,7 @@ html{
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
   width: 3px;
+  height: 3px;
 }
 
 *::-webkit-scrollbar-track {
@@ -27,4 +27,12 @@ html{
 *::-webkit-scrollbar-thumb {
   background-color: var(--scrollbar-secondary);
   border-radius: 3px;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
