@@ -2,7 +2,7 @@
   <aside
     class="flex w-screen shrink-0 flex-col bg-[rgba(19,19,19,1)] py-6 px-6 sm:w-auto md:py-11 md:pl-8 md:pr-11"
   >
-    <button class="w-10 cursor-pointer self-end hover:brightness-200">
+    <button @click="$emit('closePlaylist')" class="w-10 cursor-pointer self-end hover:brightness-200">
       <img class="object-contain" src="icons/close.svg" alt="close active playlist" />
     </button>
     <div class="shrink-1 mt-4 md:mt-16">
@@ -21,12 +21,12 @@
       </div>
     </div>
     <div
-      class="sm:min-h-80 sm:min-w-80 mt-auto flex aspect-square w-full bg-[url(images/trackCover.jpg)] bg-contain bg-no-repeat px-3 pb-2"
+      class="mx-auto mt-auto flex aspect-square w-3/4 bg-[url(images/trackCover.jpg)] bg-contain bg-no-repeat px-3 pb-2 sm:w-full sm:max-w-none"
     >
       <div class="mt-auto w-full rounded-xl bg-black/60 px-8 py-8 text-center backdrop-blur-xl">
         <h3 class="text-lg font-bold text-[rgb(214,214,214)]">Za kare</h3>
         <p class="font-bold text-[rgba(154,154,154,1)]">SB Maffija</p>
-        <div class="my-2 flex justify-evenly">
+        <div class="my-2 flex justify-evenly gap-8">
           <button class="w-10 cursor-pointer">
             <img src="icons/backward.svg" class="object-contain" alt="play current chosen track" />
           </button>
@@ -49,6 +49,8 @@
   </aside>
 </template>
 
-<script setup></script>
+<script setup>
+const emits = defineEmits(['closePlaylist']);
 
-<style lang="scss" scoped></style>
+</script>
+
