@@ -1,5 +1,4 @@
 <template>
-  <div>
     <main 
       v-if="!loading"
       class="grow overflow-y-auto py-10 px-8 text-center sm:text-left xl:flex xl:h-screen xl:flex-col xl:overflow-hidden"
@@ -33,13 +32,14 @@
           class="mt-8 flex flex-col flex-wrap items-center justify-center gap-5 sm:flex-row xl:flex-nowrap"
         >
           <div
-            class="flex aspect-[1.4] w-80 max-w-[240px] grow flex-col overflow-hidden rounded-lg brightness-90 hover:cursor-pointer"
-            :style="createGradientStops()"
-            v-for="n in 4"
+            class="flex aspect-[1.4] w-80 xl:max-w-[360px] max-w-[240px] grow flex-col overflow-hidden rounded-lg brightness-90 hover:cursor-pointer"
+            :style="createAlbumBackground(album.images[0].url)"
+            :key="album.id"
+            v-for="album in newReleaseAlbums"
           >
             <div class="grow-1 mt-auto bg-black/40 py-6 px-6 backdrop-blur-3xl md:pl-6">
-              <h3 class="font-bold">Hip-Hop</h3>
-              <p class="text-[rgb(214,214,214)]">120 new songs</p>
+              <h3 class="font-bold">{{album.name}}</h3>
+              <p class="text-[rgb(214,214,214)]">{{album.total_tracks}} songs</p>
             </div>
           </div>
         </div>
@@ -51,23 +51,23 @@
           class="mx-auto mt-9 snap-y snap-end snap-always overflow-y-auto sm:mx-0 md:[mask-image:linear-gradient(180deg,black_0%,black_75%,transparent_100%)] xl:max-h-[calc(100%-5rem)]"
           @scroll="changeFadeOnScroll($event, true)"
         >
-          <div v-for="n in 10" class="mb-9 flex items-center justify-center sm:justify-start">
+          <div v-for="(song, index) in featuredTracks" class="mb-9 flex items-center justify-center sm:justify-start">
             <div class="flex items-center">
-              <h4 class="mr-6 text-lg font-bold text-[rgba(133,133,134,1)]">01</h4>
+              <h4 class="mr-6 text-lg font-bold text-[rgba(133,133,134,1)]">{{index}}</h4>
               <div class="h-20 w-20 shrink-0 rounded-sm">
-                <img class="object-cover" src="images/trackCover.jpg" alt="song image" />
+                <img class="object-cover" :src="song.track.preview_url" alt="song image" />
               </div>
             </div>
             <div class="ml-5 capitalize text-[rgba(154,154,154,1)]">
-              <h3 class="text-lg font-bold text-[rgb(214,214,214)]">Millions</h3>
-              <p>Always never</p>
+              <h3 class="text-lg font-bold text-[rgb(214,214,214)]">{{ song.track.name }}</h3>
+              <p>{{ song.track.artists[0].name }}</p>
             </div>
             <div
               class="ml-auto mr-16 hidden items-center gap-4 capitalize text-[rgba(154,154,154,1)] sm:gap-4 md:flex md:gap-8 lg:gap-16"
             >
-              <p class="hidden lg:block">Always never</p>
+              <p class="hidden lg:block">{{ song.track.album.name }}</p>
               <p>8.069 542</p>
-              <p>3:58</p>
+              <p>{{convertMStoMinutes(song.track.duration_ms)}}</p>
               <button class="mb-0.5 h-6 w-6 hover:brightness-200">
                 <img class="object-contain" src="icons/like.svg" alt="like image" />
               </button>
@@ -76,7 +76,7 @@
         </div>
       </section>
       <!-- Recent Favourites -->
-      <section class="flex w-full flex-col">
+      <section class="flex w-full flex-col" v-if="userHasListened">
         <div class="flex">
           <h2 class="text-xl font-bold capitalize">Recent Favourites</h2>
           <button class="ml-auto text-[rgba(0,178,255,1)]">View all</button>
@@ -103,19 +103,41 @@
         </div>
       </section>
     </main>
-    <div class="absolute top-1/2 left-1/2 w-12 h-12 rounded-full border-white/30 border-solid border-4 border-t-white animate-spin">
-
-    </div>
-  </div>
+    <div v-else class="absolute top-1/2 left-1/2 w-12 h-12 rounded-full border-white/30 border-solid border-4 border-t-white animate-spin"></div>
 </template>
 
 <script setup>
 import { onMounted, ref } from 'vue';
-import { getGenres } from '../scripts/spotifyAPI.js';
+import { getFeaturedPlaylistTracks, getNewReleases } from '../scripts/spotifyAPI.js';
 
 const loading = ref(true);
+const userHasListened = ref(false);
+const featuredTracks = ref([]);
+const newReleaseAlbums = ref([]);
 
-function createGradientStops() {
+async function loadRecommendations(){
+  [featuredTracks.value, newReleaseAlbums.value] = await Promise.all([
+  getFeaturedPlaylistTracks(),
+    getNewReleases()
+  ]);
+  loading.value = false;
+}
+
+onMounted(()=>{
+  loadRecommendations();
+  // console.log(featuredTracks.value, newReleaseAlbums.value);
+});
+
+function createAlbumBackground(albumImage) {
+  
+  if(albumImage){
+    console.log(albumImage);
+    return {
+      'background-image': `url(${albumImage})`,
+      'background-size': "cover",
+      'background-repeat': "no-repeat"
+    };
+  }
   // define possible gradient directions
   let gradientDirections = [
     'to top',
@@ -178,12 +200,12 @@ function changeFadeOnScroll(e, isVertical = true) {
     `mask-image:linear-gradient(${gradientDegrees}deg,black 0%,black ${fadePercentage}%,transparent 100%)`
   );
 
-  function loadGenres(){
+}
 
-  }
-
-  onMounted(()=>{
-    
-  });
+function convertMStoMinutes(ms){
+  let seconds = Math.ceil(ms/1000);
+  let minutes = Math.floor(seconds/60);
+  seconds = seconds - minutes*60;
+  return `${minutes}:${seconds}`;
 }
 </script>
