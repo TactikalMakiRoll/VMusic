@@ -66,7 +66,7 @@ async function getFeaturedPlaylistTracks() {
     featuredAlbum = featuredAlbum.playlists.items[0].tracks;
     console.log(featuredAlbum.href);
 
-    const songResponse = await fetch(`${featuredAlbum.href}?limit=10`, {
+    const songResponse = await fetch(`${featuredAlbum.href}?limit=20`, {
         headers: requestHeader
     });
     if (!songResponse.ok) {

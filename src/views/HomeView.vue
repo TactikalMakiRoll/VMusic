@@ -12,16 +12,20 @@
         />
         <div class="mx-auto mt-2 flex items-center gap-4 sm:mt-0">
           <!-- Profile -->
-          <div class="flex cursor-pointer items-center" aria-expanded="false">
+          <div class="flex cursor-pointer items-center relative group" aria-expanded="false">
             <img class="h-11 w-11 rounded-full" src="/images/profile.png" alt="profile icon" />
             <span class="mr-4 ml-3">Alex</span>
-            <button class="w-8 shrink-0 hover:brightness-200">
+            <button class="w-8 shrink-0 group-hover:brightness-200">
               <img class="object-contain" src="icons/expand.svg" alt="Open profile menu" />
             </button>
+            <div class="absolute bg-black/50 w-full rounded-md border-stone-600 border border-solid text-center bottom-[-100%] py-2 hidden group-hover:block font-bold">
+              <button>Log out</button>
+            </div>
           </div>
           <!-- Button for active playlist -->
-          <button class="w-12 shrink-0 rounded-full px-2 py-2">
+          <button class="w-12 shrink-0 rounded-full px-2 py-2 relative">
             <img @click="$emit('openPlaylist')" class="object-contain" src="icons/radio.svg" alt="expand current playlist/song" />
+            <div class="animate-ping once top-0 left-0 absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></div>
           </button>
         </div>
       </div>
@@ -45,7 +49,7 @@
         </div>
       </section>
       <!-- Trending songs -->
-      <section class="flex-0 mt-16 min-h-0 xl:flex-1">
+      <section class="mt-16 min-h-0 flex-1">
         <h2 class="text-xl font-bold capitalize">Trending Right Now</h2>
         <div
           class="mx-auto mt-9 snap-y snap-end snap-always overflow-y-auto sm:mx-0 md:[mask-image:linear-gradient(180deg,black_0%,black_75%,transparent_100%)] xl:max-h-[calc(100%-5rem)]"
@@ -53,9 +57,9 @@
         >
           <div v-for="(song, index) in featuredTracks" class="mb-9 flex items-center justify-center sm:justify-start">
             <div class="flex items-center">
-              <h4 class="mr-6 text-lg font-bold text-[rgba(133,133,134,1)]">{{index}}</h4>
+              <h4 class="mr-6 text-lg font-bold text-[rgba(133,133,134,1)]">{{index+1<10? '0' + (index+1): (index+1)}}</h4>
               <div class="h-20 w-20 shrink-0 rounded-sm">
-                <img class="object-cover" :src="song.track.preview_url" alt="song image" />
+                <img class="object-cover" :src="song.track.album.images[0].url" alt="song image" />
               </div>
             </div>
             <div class="ml-5 capitalize text-[rgba(154,154,154,1)]">
@@ -66,7 +70,6 @@
               class="ml-auto mr-16 hidden items-center gap-4 capitalize text-[rgba(154,154,154,1)] sm:gap-4 md:flex md:gap-8 lg:gap-16"
             >
               <p class="hidden lg:block">{{ song.track.album.name }}</p>
-              <p>8.069 542</p>
               <p>{{convertMStoMinutes(song.track.duration_ms)}}</p>
               <button class="mb-0.5 h-6 w-6 hover:brightness-200">
                 <img class="object-contain" src="icons/like.svg" alt="like image" />
