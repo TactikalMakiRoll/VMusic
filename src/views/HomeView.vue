@@ -18,13 +18,13 @@
             <button class="w-8 shrink-0 group-hover:brightness-200">
               <img class="object-contain" src="icons/expand.svg" alt="Open profile menu" />
             </button>
-            <div class="absolute bg-black/50 w-full rounded-md border-stone-600 border border-solid text-center bottom-[-100%] py-2 hidden group-hover:block font-bold">
+            <div class="absolute bg-stone-900 w-full rounded-md border-stone-800 border border-solid text-center bottom-[-100%] transition-opacity duration-300 py-2 opacity-0 group-hover:opacity-100 font-bold">
               <button>Log out</button>
             </div>
           </div>
           <!-- Button for active playlist -->
-          <button class="w-12 shrink-0 rounded-full px-2 py-2 relative">
-            <img @click="$emit('openPlaylist')" class="object-contain" src="icons/radio.svg" alt="expand current playlist/song" />
+          <button @click="$emit('openPlaylist')" class="w-12 shrink-0 rounded-full px-2 py-2 relative">
+            <img class="object-contain" src="icons/radio.svg" alt="expand current playlist/song" />
             <div class="animate-ping once top-0 left-0 absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></div>
           </button>
         </div>
@@ -74,6 +74,7 @@
               <button class="mb-0.5 h-6 w-6 hover:brightness-200">
                 <img class="object-contain" src="icons/like.svg" alt="like image" />
               </button>
+              <TrackOptions></TrackOptions>
             </div>
           </div>
         </div>
@@ -111,6 +112,7 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
+import TrackOptions from '../components/UI/TrackOptions.vue';
 import { getFeaturedPlaylistTracks, getNewReleases } from '../scripts/spotifyAPI.js';
 
 const loading = ref(true);

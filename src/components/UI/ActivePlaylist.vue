@@ -1,6 +1,6 @@
 <template>
   <aside
-    class="flex w-screen shrink-0 flex-col bg-[rgba(19,19,19,1)] py-6 px-6 sm:w-auto md:py-11 md:pl-8 md:pr-11"
+    class="backdrop-opacity-100 flex w-screen shrink-0 flex-col bg-[rgba(19,19,19,1)] py-6 px-6 sm:w-auto md:py-11 md:pl-8 md:pr-11"
   >
     <button @click="$emit('closePlaylist')" class="w-10 cursor-pointer self-end hover:brightness-200">
       <img class="object-contain" src="icons/close.svg" alt="close active playlist" />
@@ -14,9 +14,7 @@
             <h4 class="text-lg font-bold text-[rgb(214,214,214)]">Naturally</h4>
             <p>Tinashe</p>
           </div>
-          <button class="ml-auto w-9 hover:brightness-200">
-            <img src="icons/dotsvertical.svg" alt="song settings" />
-          </button>
+          <TrackOptions class="ml-auto"></TrackOptions>
         </div>
       </div>
     </div>
@@ -50,6 +48,8 @@
 </template>
 
 <script setup>
+import TrackOptions from './TrackOptions.vue';
+
 const emits = defineEmits(['closePlaylist']);
 
 </script>

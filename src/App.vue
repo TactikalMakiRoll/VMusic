@@ -4,13 +4,14 @@
       class="shrink-0"
       :class="{
         'brightness-50': playlistExpanded,
-        'sm:brightness-100': playlistExpanded
+        'xl:brightness-100': playlistExpanded
       }"
     ></NavBar>
     <RouterView
       @openPlaylist="switchPlaylist"
       :class="{
-        'brightness-50': playlistExpanded
+        'brightness-50': playlistExpanded,
+        'xl:brightness-100': playlistExpanded
       }"
     />
     <ActivePlaylist
