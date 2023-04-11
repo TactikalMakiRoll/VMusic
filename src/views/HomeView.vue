@@ -55,14 +55,14 @@
           class="mx-auto mt-9 snap-y snap-end snap-always overflow-y-auto sm:mx-0 md:[mask-image:linear-gradient(180deg,black_0%,black_75%,transparent_100%)] xl:max-h-[calc(100%-5rem)]"
           @scroll="changeFadeOnScroll($event, true)"
         >
-          <div v-for="(song, index) in featuredTracks" class="mb-9 flex items-center justify-center sm:justify-start">
+          <div v-for="(song, index) in featuredTracks" class="mb-9 flex items-center justify-start">
             <div class="flex items-center">
               <h4 class="mr-6 text-lg font-bold text-[rgba(133,133,134,1)]">{{index+1<10? '0' + (index+1): (index+1)}}</h4>
               <div class="h-20 w-20 shrink-0 rounded-sm">
                 <img class="object-cover" :src="song.track.album.images[0].url" alt="song image" />
               </div>
             </div>
-            <div class="ml-5 capitalize text-[rgba(154,154,154,1)]">
+            <div class="mx-5 text-left capitalize text-[rgba(154,154,154,1)]">
               <h3 class="text-lg font-bold text-[rgb(214,214,214)]">{{ song.track.name }}</h3>
               <p>{{ song.track.artists[0].name }}</p>
             </div>
@@ -130,13 +130,11 @@ async function loadRecommendations(){
 
 onMounted(()=>{
   loadRecommendations();
-  // console.log(featuredTracks.value, newReleaseAlbums.value);
 });
 
 function createAlbumBackground(albumImage) {
   
   if(albumImage){
-    console.log(albumImage);
     return {
       'background-image': `url(${albumImage})`,
       'background-size': "cover",
