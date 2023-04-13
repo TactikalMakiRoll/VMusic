@@ -48,7 +48,7 @@
 </template>
 
 <script setup>
-import TrackOptions from './TrackOptions.vue';
+import TrackOptions from './UI/TrackOptions.vue';
 
 const emits = defineEmits(['closePlaylist']);
 

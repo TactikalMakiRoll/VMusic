@@ -25,8 +25,8 @@
 <script setup>
 import { ref } from 'vue';
 import { RouterView } from 'vue-router';
-import NavBar from './components/UI/NavBar.vue';
-import ActivePlaylist from './components/UI/ActivePlaylist.vue';
+import NavBar from './components/NavBar.vue';
+import ActivePlaylist from './components/ActivePlaylist.vue';
 const playlistExpanded = ref(false);
 
 function switchPlaylist(){
