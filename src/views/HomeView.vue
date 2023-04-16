@@ -3,32 +3,7 @@
       v-if="!loading"
       class="grow overflow-y-auto py-10 px-8 text-center sm:text-left xl:flex xl:h-screen xl:flex-col xl:overflow-hidden"
     >
-      <!-- Search bar and profile -->
-      <div class="flex flex-wrap gap-4 md:gap-9">
-        <input
-          class="flex-1 rounded-full bg-[rgb(28,27,28)] px-6 py-4 text-[rgb(187,187,187)] placeholder:text-[rgb(119,119,119)] sm:px-9 sm:py-4"
-          type="text"
-          placeholder="Search for song, artist, lyrics..."
-        />
-        <div class="mx-auto mt-2 flex items-center gap-4 sm:mt-0">
-          <!-- Profile -->
-          <div class="flex cursor-pointer items-center relative group" aria-expanded="false">
-            <img class="h-11 w-11 rounded-full" src="/images/profile.png" alt="profile icon" />
-            <span class="mr-4 ml-3">Alex</span>
-            <button class="w-8 shrink-0 group-hover:brightness-200">
-              <img class="object-contain" src="icons/expand.svg" alt="Open profile menu" />
-            </button>
-            <div class="absolute bg-stone-900 w-full rounded-md border-stone-800 border border-solid text-center bottom-[-100%] transition-opacity duration-300 py-2 opacity-0 group-hover:opacity-100 font-bold">
-              <button>Log out</button>
-            </div>
-          </div>
-          <!-- Button for active playlist -->
-          <button @click="$emit('openPlaylist')" class="w-12 shrink-0 rounded-full px-2 py-2 relative">
-            <img class="object-contain" src="icons/radio.svg" alt="expand current playlist/song" />
-            <div class="animate-ping once top-0 left-0 absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></div>
-          </button>
-        </div>
-      </div>
+    <SearchBar @openPlaylist="$emit('openPlaylist')"></SearchBar>
       <!-- Albums -->
       <section class="mt-8">
         <h2 class="text-xl font-bold capitalize">New Releases</h2>
@@ -63,8 +38,8 @@
           <div v-for="(song, index) in featuredTracks" class="mb-9 flex items-center justify-start">
             <div class="flex items-center">
               <h4 class="mr-6 text-lg font-bold text-[rgba(133,133,134,1)]">{{index+1<10? '0' + (index+1): (index+1)}}</h4>
-              <div class="h-20 w-20 shrink-0 rounded-sm group relative">
-                <img class="object-cover" :src="song.track.album.images[0].url" alt="song image" />
+              <div class="h-20 w-20 shrink-0 rounded-lg group relative">
+                <img class="object-cover rounded-lg" :src="song.track.album.images[0].url" alt="song image" />
                 <HoverEffect class="opacity-0 group-hover:opacity-100">
                     <button class="h-12 w-12">
                         <img class="object-contain" src="icons/play.svg" alt="play chosen playlist" />
@@ -122,10 +97,17 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
+
 import HoverEffect from '../components/UI/HoverEffect.vue';
 import TrackOptions from '../components/UI/TrackOptions.vue';
+import SearchBar from '../components/SearchBar.vue';
+
 import { getFeaturedPlaylistTracks, getNewReleases } from '../scripts/spotifyAPI.js';
 import { createAlbumBackground, horizontalScroll, changeFadeOnScroll, convertMStoMinutes} from '../scripts/domHelperFunctions.js';
+
+import { useProfileStore } from '../stores/profile';
+
+const store = useProfileStore();
 
 const loading = ref(true);
 const userHasListened = ref(false);
@@ -142,5 +124,6 @@ async function loadRecommendations(){
 
 onMounted(()=>{
   loadRecommendations();
+  
 });
 </script>

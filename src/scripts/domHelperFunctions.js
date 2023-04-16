@@ -1,3 +1,4 @@
+// this function will create a gradient background via tailwind classes for albums from spotify that do not have their image
 function createAlbumBackground(albumImage) {
     if(albumImage){
         return {
@@ -44,6 +45,7 @@ function createAlbumBackground(albumImage) {
     };
 }
   
+// Smooth horizontal scrolling
 function horizontalScroll(e, speed = 500) {
     e.preventDefault();
     if (e.deltaY > 0) {
@@ -53,6 +55,7 @@ function horizontalScroll(e, speed = 500) {
     }
 }
   
+// this function changes the amount of fade on scrollable elements depending on their current scroll percentage
 function changeFadeOnScroll(e, isVertical = true) {
     let scrolledAmount = isVertical ? e.currentTarget.scrollTop : e.currentTarget.scrollLeft;
     let elementSize = isVertical ? e.currentTarget.clientHeight : e.currentTarget.clientWidth;
@@ -69,6 +72,7 @@ function changeFadeOnScroll(e, isVertical = true) {
     );
 }
   
+// A helper to convert received MS from Spotify to Minutes shown on different screens
 function convertMStoMinutes(ms){
     let seconds = Math.ceil(ms/1000);
     let minutes = Math.floor(seconds/60);
