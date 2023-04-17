@@ -5,7 +5,7 @@ import { defineStore } from 'pinia';
 export const useProfileStore = defineStore('profile', () => {
   // a code that will be sent to Spotify for an access token
   const userCode = ref(undefined);
-  const clientID = ref("10fa63e5bae4490cbf422f6d3e5cebf6");
+  const clientId = ref("10fa63e5bae4490cbf422f6d3e5cebf6");
   const profileName = ref("Guest");
   const profileImage = ref(undefined);
 
@@ -18,5 +18,5 @@ export const useProfileStore = defineStore('profile', () => {
     profileName.value = "Guest";
     profileImage.value = undefined;
   }
-  return {profileName, profileImage, clientID, userCode, $reset};
+  return {profileName, profileImage, clientId, userCode, $reset};
 });

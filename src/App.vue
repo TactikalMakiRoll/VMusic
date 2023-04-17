@@ -23,15 +23,27 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { RouterView } from 'vue-router';
+
 import NavBar from './components/NavBar.vue';
 import ActivePlaylist from './components/ActivePlaylist.vue';
+
+import { useProfileStore } from './stores/profile';
+
+const profile = useProfileStore();
 const playlistExpanded = ref(false);
 
 function switchPlaylist(){
   playlistExpanded.value = !playlistExpanded.value;
 }
+
+onMounted(()=>{
+  const params = new URLSearchParams(window.location.search);
+
+  profile.userCode = params.get("code");
+
+});
 
 
 </script>

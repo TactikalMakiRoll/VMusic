@@ -105,9 +105,6 @@ import SearchBar from '../components/SearchBar.vue';
 import { getFeaturedPlaylistTracks, getNewReleases } from '../scripts/spotifyAPI.js';
 import { createAlbumBackground, horizontalScroll, changeFadeOnScroll, convertMStoMinutes} from '../scripts/domHelperFunctions.js';
 
-import { useProfileStore } from '../stores/profile';
-
-const store = useProfileStore();
 
 const loading = ref(true);
 const userHasListened = ref(false);
