@@ -30,6 +30,7 @@ import NavBar from './components/NavBar.vue';
 import ActivePlaylist from './components/ActivePlaylist.vue';
 
 import { useProfileStore } from './stores/profile';
+import { getProfileInfo } from './scripts/spotifyLogin.js';
 
 const profile = useProfileStore();
 const playlistExpanded = ref(false);
@@ -40,9 +41,11 @@ function switchPlaylist(){
 
 onMounted(()=>{
   const params = new URLSearchParams(window.location.search);
-
   profile.userCode = params.get("code");
 
+  if(profile.userCode){
+    getProfileInfo(profile.clientId, profile.userCode);
+  }
 });
 
 

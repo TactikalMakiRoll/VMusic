@@ -29,23 +29,30 @@
                 }">
             </div>
         </button>
+        <button @click="logoutUser();" class="w-12 shrink-0 rounded-full px-2 py-2 relative">RESET
+        </button>
     </div>
 </div>
 </template>
 
 <script setup>
 import { performLogin } from '../scripts/spotifyLogin.js';
+
 import { useProfileStore } from '../stores/profile';
+
+import { useRouter } from 'vue-router';
+
 const profile = useProfileStore();
+const router = useRouter();
 
 async function authenticateUser(){
-    
-    console.log(profile.clientId);
-    console.log(profile.userCode);
-    const profileInfo = await performLogin(profile.clientId, profile.userCode);
-    console.log(profileInfo);
+    await performLogin(profile.clientId);
 }
 
+function logoutUser(){
+    profile.$reset();
+    router.replace({ path: '/' });
+}
 
 
 </script>

@@ -1,15 +1,15 @@
 // made and adapted to my needs with this spotify docs tutorial - https://developer.spotify.com/documentation/web-api/howtos/web-app-profile
 
-async function performLogin(clientId, code){
-    if (!code) {
-        console.log("clientId " + clientId);
-        console.log("code " + code);
-        redirectToAuthCodeFlow(clientId);
-    } else {
-        const accessToken = await getAccessToken(clientId, code);
-        const profile = await fetchProfile(accessToken);
-        return profile;
-    }
+async function performLogin(clientId){
+    redirectToAuthCodeFlow(clientId);
+}
+
+async function getProfileInfo(clientId, code){
+    const accessToken = await getAccessToken(clientId, code);
+    const profile = await fetchProfile(accessToken);
+    console.log("profile info");
+    console.log(profile);
+    return profile;
 }
 
 async function redirectToAuthCodeFlow(clientId) {
@@ -56,7 +56,7 @@ async function getAccessToken(clientId, code) {
     params.append("client_id", clientId);
     params.append("grant_type", "authorization_code");
     params.append("code", code);
-    params.append("redirect_uri", "http://localhost:5173/callback");
+    params.append("redirect_uri", "http://localhost:5173/");
     params.append("code_verifier", verifier);
 
     const result = await fetch("https://accounts.spotify.com/api/token", {
@@ -74,7 +74,8 @@ async function fetchProfile(token) {
         method: "GET", headers: { Authorization: `Bearer ${token}` }
     });
 
+    console.log("fetchProfile");
     return await result.json();
 }
 
-export { performLogin };
+export { performLogin, getProfileInfo };
