@@ -46,7 +46,7 @@ const profile = useProfileStore();
 const router = useRouter();
 
 async function authenticateUser(){
-    await performLogin(profile.clientId);
+    profile.profileInfo = await performLogin(profile.clientId);
 }
 
 function logoutUser(){

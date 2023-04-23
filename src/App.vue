@@ -20,6 +20,7 @@
       class="absolute right-0 h-screen shrink-0 xl:static"
     ></ActivePlaylist>
   </div>
+  <WarningPopup></WarningPopup>
 </template>
 
 <script setup>
@@ -31,6 +32,7 @@ import ActivePlaylist from './components/ActivePlaylist.vue';
 
 import { useProfileStore } from './stores/profile';
 import { getProfileInfo } from './scripts/spotifyLogin.js';
+import WarningPopup from './components/UI/WarningPopup.vue';
 
 const profile = useProfileStore();
 const playlistExpanded = ref(false);

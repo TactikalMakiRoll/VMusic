@@ -7,13 +7,13 @@ export const useProfileStore = defineStore('profile', () => {
   const userCode = ref(null);
   const clientId = ref("10fa63e5bae4490cbf422f6d3e5cebf6");
   const profileName = ref("Guest");
-  const profileImage = ref(null);
+  const profileInfo = ref(null);
 
   // reset function for when user logs out
   function $reset() {
     profileName.value = "Guest";
-    profileImage.value = null;
+    profileInfo.value = null;
     userCode.value = null;
   }
-  return {profileName, profileImage, clientId, userCode, $reset};
+  return {profileName, profileInfo, clientId, userCode, $reset};
 });
