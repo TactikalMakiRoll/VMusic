@@ -1,14 +1,43 @@
 <template>
-    <div class="inline-block bg-[rgba(19,19,19,1)] px-6 pt-4 border-2 border-zinc-800 border-solid absolute bottom-0 left-1/2 translate-x-[-50%] text-[#a5a5a5] text-lg rounded-t-lg">
-        <slot>This is a warning message about something. Can contain buttons or such</slot>
-        <div class="w-full mt-4 h-[1px] bg-red-100"></div>
-    </div>
+  <div
+    ref="notificationBox"
+    class="absolute bottom-0 left-1/2 inline-block translate-x-[-50%] rounded-t-lg border-2 border-solid border-zinc-800 bg-[rgba(19,19,19,1)] px-6 pt-4 text-lg text-[#a5a5a5]"
+  >
+    <slot>Something went wrong</slot>
+    <div
+      ref="progressBar"
+      class="relative right-6 mt-4 h-[2px] w-[0px] bg-gradient-to-r from-red-600 to-purple-700"
+    ></div>
+  </div>
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue';
 
+const emit = defineEmits(['popupExpired']);
+
+const progressBar = ref(null);
+const notificationBox = ref(null);
+
+onMounted(() => {
+  progressBar.value.classList.add('animate-timer');
+  setTimeout(() => {
+    emit('popupExpired');
+  }, 5000);
+});
 </script>
 
-<style lang="scss" scoped>
+<style>
+.animate-timer {
+  animation: notificationTimer 5s linear forwards;
+}
 
+@keyframes notificationTimer {
+  0% {
+    width: 0px;
+  }
+  100% {
+    width: calc(100% + 3rem);
+  }
+}
 </style>

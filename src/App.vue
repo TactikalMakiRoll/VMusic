@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto flex h-screen max-w-[2560px] flex-col xl:overflow-hidden sm:flex-row">
+  <div class="mx-auto flex h-screen max-w-[2560px] flex-col sm:flex-row xl:overflow-hidden">
     <NavBar
       class="shrink-0"
       :class="{
@@ -9,6 +9,7 @@
     ></NavBar>
     <RouterView
       @openPlaylist="switchPlaylist"
+      @sendWarning="showWarning"
       :class="{
         'brightness-50': playlistExpanded,
         'xl:brightness-100': playlistExpanded
@@ -20,7 +21,13 @@
       class="absolute right-0 h-screen shrink-0 xl:static"
     ></ActivePlaylist>
   </div>
-  <WarningPopup></WarningPopup>
+  <Transition name="warning">
+    <WarningPopup
+      @popup-expired="warningVisible = false"
+      v-if="warningVisible"
+      >{{ warningText }}</WarningPopup
+    >
+  </Transition>
 </template>
 
 <script setup>
@@ -36,19 +43,44 @@ import WarningPopup from './components/UI/WarningPopup.vue';
 
 const profile = useProfileStore();
 const playlistExpanded = ref(false);
+const warningVisible = ref(false);
+const warningText = ref('');
 
-function switchPlaylist(){
+function switchPlaylist() {
   playlistExpanded.value = !playlistExpanded.value;
 }
 
-onMounted(()=>{
+onMounted(() => {
   const params = new URLSearchParams(window.location.search);
-  profile.userCode = params.get("code");
+  profile.userCode = params.get('code');
 
-  if(profile.userCode){
+  if (profile.userCode) {
     getProfileInfo(profile.clientId, profile.userCode);
   }
 });
 
-
+function showWarning(text) {
+  warningText.value = text;
+  warningVisible.value = true;
+}
 </script>
+
+<style>
+.warning-enter-active,
+.warning-leave-active {
+  transition: opacity 0.5s ease;
+  transform: translateY(200%);
+}
+
+.warning-enter-to,
+.warning-leave-from {
+  opacity: 1;
+  transform: translateY(44px);
+}
+
+.warning-enter-from,
+.warning-leave-to {
+  transform: translateY(200%);
+  opacity: 0;
+}
+</style>

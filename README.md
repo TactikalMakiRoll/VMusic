@@ -1,57 +1,33 @@
 # VMusic
 
-This template should help get you started developing with Vue 3 in Vite.
+### Work in progress
 
-## Recommended IDE Setup
+This is a single-page music player built with Vue completely from scratch! Discover new hits, search for your favorite tracks, save them to your playlist and more!
+Supports all devices and screen sizes!
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+**Link to project:** http://recruiters-love-seeing-live-demos.com/
 
-## Customize configuration
+![alt tag](http://placecorgi.com/1200/650)
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## How It's Made:
 
-## Project Setup
+**Tech used:** HTML, TailwindCSS, JavaScript, Vue 3, Pinia, Cypress\*, Spotify API, Vite (+Prettier, ESLint)
 
-```sh
-npm install
-```
+## Optimizations
 
-### Compile and Hot-Reload for Development
+As this is a work in progress there is still a lot of functionality that needs to be finished. Current list:
 
-```sh
-npm run dev
-```
+- Adding to favorites (API call)
+- Playing the track
+- Submenu options functionality
+- Search and trending pages
 
-### Compile and Minify for Production
+## What's already working
 
-```sh
-npm run build
-```
+- Home page new user layout (with responsiveness)
+- Log in and log out (with state in pinia)
+- Clicking "Add to favorites" while logged out produces a warning
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+## Commit history
 
-```sh
-npm run test:unit
-```
-
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
-
-```sh
-npm run test:e2e:dev
-```
-
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
-
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-npm run build
-npm run test:e2e
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+I tried to keep commit history as clean as possible so it represents a real business product. Comments to the code will arrive soon

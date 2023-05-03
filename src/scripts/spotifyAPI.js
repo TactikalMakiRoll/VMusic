@@ -57,7 +57,7 @@ async function getFeaturedPlaylistTracks() {
     const requestHeader = new Headers({
         "Authorization": " Bearer  " + accessToken
     });
-    const response = await fetch(baseEndpoint + '/v1/browse/featured-playlists?country=UA&timestamp=2023-04-05T17%3A41%3A19&offset=0&limit=1', {
+    const response = await fetch(baseEndpoint + '/v1/browse/featured-playlists?offset=0&limit=1', {
         headers: requestHeader
     });
     if (!response.ok) {
