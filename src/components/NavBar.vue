@@ -5,27 +5,47 @@
     <button
       class="mb-1 w-10 cursor-pointer rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 p-2 hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 sm:mb-0"
     >
-      <img class="object-contain" src="icons/logo.svg" alt="logo" />
+      <img
+        class="object-contain"
+        src="@/../public/icons/logo.svg"
+        alt="logo"
+      />
     </button>
     <ul class="mx-1 flex items-center justify-center gap-4 sm:flex-col sm:gap-9">
       <li class="cursor-pointer hover:brightness-200">
         <button class="w-8">
-          <img class="object-contain" src="icons/home.svg" alt="home page" />
+          <img
+            class="object-contain"
+            src="@/../public/icons/home.svg"
+            alt="home page"
+          />
         </button>
       </li>
       <li class="cursor-pointer hover:brightness-200">
         <button class="w-8">
-          <img class="object-contain" src="icons/search.svg" alt="search page" />
+          <img
+            class="object-contain"
+            src="@/../public/icons/search.svg"
+            alt="search page"
+          />
         </button>
       </li>
       <li class="cursor-pointer hover:brightness-200">
         <button class="w-8">
-          <img class="object-contain" src="icons/like.svg" alt="favourites page" />
+          <img
+            class="object-contain"
+            src="@/../public/icons/like.svg"
+            alt="favourites page"
+          />
         </button>
       </li>
       <li class="cursor-pointer hover:brightness-200">
         <button class="w-8">
-          <img class="object-contain" src="icons/trending.svg" alt="trending page" />
+          <img
+            class="object-contain"
+            src="@/../public/icons/trending.svg"
+            alt="trending page"
+          />
         </button>
       </li>
     </ul>

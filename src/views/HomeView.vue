@@ -24,7 +24,7 @@
             <button class="h-12 w-12">
               <img
                 class="object-contain"
-                src="icons/play.svg"
+                src="@/../public/icons/play.svg"
                 alt="play chosen playlist"
               />
             </button>
@@ -57,7 +57,7 @@
                 <button class="h-12 w-12">
                   <img
                     class="object-contain"
-                    src="icons/play.svg"
+                    src="@/../public/icons/play.svg"
                     alt="play chosen playlist"
                   />
                 </button>
@@ -79,7 +79,7 @@
             >
               <img
                 class="object-contain"
-                src="icons/like.svg"
+                src="@/../public/icons/like.svg"
                 alt="like image"
               />
             </button>
@@ -109,7 +109,7 @@
           <div class="relative h-32 w-32">
             <img
               class="absolute top-0 left-0 h-full w-full rounded-sm object-cover"
-              src="images/trackCover.jpg"
+              src="@/../public/images/trackCover.jpg"
               alt="song cover"
             />
           </div>
