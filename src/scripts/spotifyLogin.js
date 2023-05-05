@@ -6,6 +6,7 @@ async function performLogin(clientId){
 
 async function getProfileInfo(clientId, code){
     const accessToken = await getAccessToken(clientId, code);
+    localStorage.setItem("currentToken", accessToken);
     const profile = await fetchProfile(accessToken);
     console.log("profile info");
     console.log(profile);
@@ -23,7 +24,7 @@ async function redirectToAuthCodeFlow(clientId) {
     params.append("client_id", clientId);
     params.append("response_type", "code");
     params.append("redirect_uri", "http://localhost:5173/");
-    params.append("scope", "user-read-private user-read-email");
+    params.append("scope", "user-read-private user-read-email user-follow-read user-follow-modify");
     params.append("code_challenge_method", "S256");
     params.append("code_challenge", challenge);
 

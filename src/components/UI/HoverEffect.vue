@@ -6,7 +6,7 @@
       <button class="h-12 w-12">
         <img
           class="object-contain"
-          src="@/../public/icons/play.svg"
+          src="@/publicassets/icons/play.svg"
           alt="play chosen playlist"
         />
       </button>

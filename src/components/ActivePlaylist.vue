@@ -8,7 +8,7 @@
     >
       <img
         class="object-contain"
-        src="@/../public/icons/close.svg"
+        src="@/publicassets/icons/close.svg"
         alt="close active playlist"
       />
     </button>
@@ -21,7 +21,7 @@
         <div class="flex cursor-pointer items-center">
           <img
             class="h-16 w-16 rounded-sm"
-            src="@/../public/images/trackCover.jpg"
+            src="@/publicassets/images/trackCover.jpg"
             alt="song image"
           />
           <div class="ml-5 capitalize text-[rgba(154,154,154,1)]">
@@ -41,20 +41,20 @@
         <div class="my-2 flex justify-evenly gap-8">
           <button class="w-10 cursor-pointer">
             <img
-              src="@/../public/icons/backward.svg"
+              src="@/publicassets/icons/backward.svg"
               class="object-contain"
               alt="play current chosen track"
             />
           </button>
           <button class="w-10 cursor-pointer">
             <img
-              src="@/../public/icons/play.svg"
+              src="@/publicassets/icons/play.svg"
               alt="play current chosen track"
             />
           </button>
           <button class="w-10 cursor-pointer">
             <img
-              src="@/../public/icons/forward.svg"
+              src="@/publicassets/icons/forward.svg"
               class="object-contain"
               alt="play current chosen track"
             />

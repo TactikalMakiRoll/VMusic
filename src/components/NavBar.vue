@@ -7,7 +7,7 @@
     >
       <img
         class="object-contain"
-        src="@/../public/icons/logo.svg"
+        src="@/publicassets/icons/logo.svg"
         alt="logo"
       />
     </button>
@@ -16,7 +16,7 @@
         <button class="w-8">
           <img
             class="object-contain"
-            src="@/../public/icons/home.svg"
+            src="@/publicassets/icons/home.svg"
             alt="home page"
           />
         </button>
@@ -25,7 +25,7 @@
         <button class="w-8">
           <img
             class="object-contain"
-            src="@/../public/icons/search.svg"
+            src="@/publicassets/icons/search.svg"
             alt="search page"
           />
         </button>
@@ -34,7 +34,7 @@
         <button class="w-8">
           <img
             class="object-contain"
-            src="@/../public/icons/like.svg"
+            src="@/publicassets/icons/like.svg"
             alt="favourites page"
           />
         </button>
@@ -43,7 +43,7 @@
         <button class="w-8">
           <img
             class="object-contain"
-            src="@/../public/icons/trending.svg"
+            src="@/publicassets/icons/trending.svg"
             alt="trending page"
           />
         </button>

@@ -24,7 +24,7 @@
             <button class="h-12 w-12">
               <img
                 class="object-contain"
-                src="@/../public/icons/play.svg"
+                src="@/publicassets/icons/play.svg"
                 alt="play chosen playlist"
               />
             </button>
@@ -50,14 +50,14 @@
             <div class="group relative h-20 w-20 shrink-0 rounded-lg">
               <img
                 class="rounded-lg object-cover"
-                :src="song.track.album.images[0].url"
+                :src="song.album.images[0].url"
                 alt="song image"
               />
               <HoverEffect class="opacity-0 group-hover:opacity-100">
                 <button class="h-12 w-12">
                   <img
                     class="object-contain"
-                    src="@/../public/icons/play.svg"
+                    src="@/publicassets/icons/play.svg"
                     alt="play chosen playlist"
                   />
                 </button>
@@ -65,23 +65,47 @@
             </div>
           </div>
           <div class="mx-5 text-left capitalize text-[rgba(154,154,154,1)]">
-            <h3 class="text-lg font-bold text-[rgb(214,214,214)]">{{ song.track.name }}</h3>
-            <p>{{ song.track.artists[0].name }}</p>
+            <h3 class="text-lg font-bold text-[rgb(214,214,214)]">{{ song.name }}</h3>
+            <p>{{ song.artists[0].name }}</p>
           </div>
           <div
             class="ml-auto mr-16 hidden items-center gap-4 capitalize text-[rgba(154,154,154,1)] sm:gap-4 md:flex md:gap-8 lg:gap-16"
           >
-            <p class="hidden lg:block">{{ song.track.album.name }}</p>
-            <p>{{ convertMStoMinutes(song.track.duration_ms) }}</p>
+            <p class="hidden lg:block">{{ song.album.name }}</p>
+            <p>{{ convertMStoMinutes(song.duration_ms) }}</p>
             <button
               class="mb-0.5 h-6 w-6 hover:brightness-200"
               @click="toggleFavorite"
             >
               <img
+                v-if="song.followed"
                 class="object-contain"
-                src="@/../public/icons/like.svg"
-                alt="like image"
+                src="@/publicassets/icons/likefull.svg"
+                alt="this artist is already followed by your profile
+                  "
               />
+              <img
+                v-else
+                class="object-contain"
+                src="@/publicassets/icons/like.svg"
+                alt="click to follow this artist"
+              />
+              <!-- I wanted to create a variable icon, but that needs crafing the URL in <script> tag -->
+
+              <!-- <img
+                class="object-contain"
+                :src="
+                  new URL(
+                    '/src/publicassets/icons/' + song.followed ? 'likefull.svg' : 'like.svg',
+                    import.meta.url
+                  ).href
+                "
+                :alt="
+                  song.followed
+                    ? 'this artist is already followed by your profile'
+                    : 'click to follow this artist'
+                "
+              /> -->
             </button>
             <TrackOptions></TrackOptions>
           </div>
@@ -109,7 +133,7 @@
           <div class="relative h-32 w-32">
             <img
               class="absolute top-0 left-0 h-full w-full rounded-sm object-cover"
-              src="@/../public/images/trackCover.jpg"
+              src="@/publicassets/images/trackCover.jpg"
               alt="song cover"
             />
           </div>
@@ -126,7 +150,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 
 import HoverEffect from '../components/UI/HoverEffect.vue';
 import TrackOptions from '../components/UI/TrackOptions.vue';
@@ -134,7 +158,11 @@ import SearchBar from '../components/SearchBar.vue';
 
 import { useProfileStore } from '../stores/profile';
 
-import { getFeaturedPlaylistTracks, getNewReleases } from '../scripts/spotifyAPI.js';
+import {
+  getFeaturedPlaylistTracks,
+  getNewReleases,
+  checkArtistFollow
+} from '../scripts/spotifyAPI.js';
 import {
   createAlbumBackground,
   horizontalScroll,
@@ -156,6 +184,10 @@ async function loadRecommendations() {
     getFeaturedPlaylistTracks(),
     getNewReleases()
   ]);
+  featuredTracks.value = featuredTracks.value.map((song) => {
+    return song.track;
+  });
+  checkFeaturedFavoritesState();
   loading.value = false;
 }
 
@@ -167,5 +199,23 @@ function toggleFavorite() {
   if (!profile.userCode) {
     emit('sendWarning', 'Log in to add songs to favorites');
   }
+}
+
+async function checkFeaturedFavoritesState() {
+  console.log('checkFeaturedFavoritesState started');
+  if (profile.userCode) {
+    let artistList = [];
+    featuredTracks.value.forEach((elem) => {
+      artistList.push(elem.artists[0].id);
+    });
+    console.log(artistList);
+
+    const artistsFollowResponse = await checkArtistFollow(artistList);
+    console.log(artistsFollowResponse);
+    for (let i = 0; i < artistsFollowResponse.length; i++) {
+      featuredTracks.value[i].followed = artistsFollowResponse[i];
+    }
+  }
+  console.log('checkFeaturedFavoritesState finished');
 }
 </script>

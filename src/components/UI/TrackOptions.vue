@@ -6,7 +6,7 @@
       class="w-9 hover:brightness-200"
     >
       <img
-        src="@/../public/icons/dotsvertical.svg"
+        src="@/publicassets/icons/dotsvertical.svg"
         alt="song settings"
       />
     </button>
@@ -21,7 +21,7 @@
       >
         <img
           class="h-8 w-8 shrink-0"
-          src="@/../public/icons/play.svg"
+          src="@/publicassets/icons/play.svg"
           alt=""
         />
         Play
@@ -31,7 +31,7 @@
       >
         <img
           class="h-8 w-8 shrink-0"
-          src="@/../public/icons/playnext.svg"
+          src="@/publicassets/icons/playnext.svg"
           alt=""
         />
         Play next
@@ -41,7 +41,7 @@
       >
         <img
           class="h-8 w-8 shrink-0"
-          src="@/../public/icons/queue.svg"
+          src="@/publicassets/icons/queue.svg"
           alt=""
         />
         Add to Queue
@@ -51,7 +51,7 @@
       >
         <img
           class="h-8 w-8 shrink-0"
-          src="@/../public/icons/like.svg"
+          src="@/publicassets/icons/like.svg"
           alt=""
         />
         Add to favorites

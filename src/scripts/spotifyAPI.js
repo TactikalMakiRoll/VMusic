@@ -33,6 +33,7 @@ async function getToken(){
         throw new Error(message);
     }
     const trending = await response.json();
+    console.log(trending?.access_token);
     return trending?.access_token;
 }
 
@@ -98,4 +99,29 @@ async function getNewReleases() {
     return featured.albums.items;
 }
 
-export {getToken, getGenres, getFeaturedPlaylistTracks, getNewReleases};
+async function checkArtistFollow(artistList){
+    let accessToken;
+    if(localStorage.getItem("currentToken")){
+        accessToken = localStorage.getItem("currentToken");
+        console.log("Accessed acc");
+        console.log(accessToken);
+    }
+    else{
+        accessToken = await getToken();
+        console.log("FAAAAAAAAAAAAAAAKE");
+    }
+    const requestHeader = new Headers({
+        "Authorization": " Bearer  " + accessToken
+    });
+    const response = await fetch(baseEndpoint + '/v1/me/following/contains?type=artist&ids=' + artistList.join(","), {
+        headers: requestHeader
+    });
+    if (!response.ok) {
+        const message = `An error has occured: ${response.status} ${response.text}`;
+        throw new Error(message);
+    }
+    const artistFollow = await response.json();
+    return artistFollow;
+}
+
+export {getToken, getGenres, getFeaturedPlaylistTracks, getNewReleases, checkArtistFollow};

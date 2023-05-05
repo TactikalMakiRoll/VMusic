@@ -14,14 +14,14 @@
       >
         <img
           class="h-11 w-11 rounded-full"
-          src="@/../public/images/profile.png"
+          src="@/publicassets/images/profile.png"
           alt="profile icon"
         />
         <span class="mr-4 ml-3">{{ profile.profileName }}</span>
         <button class="w-8 shrink-0 group-hover:brightness-200">
           <img
             class="object-contain"
-            src="@/../public/icons/expand.svg"
+            src="@/publicassets/icons/expand.svg"
             alt="Open profile menu"
           />
         </button>
@@ -44,7 +44,7 @@
       >
         <img
           class="object-contain"
-          src="@/../public/icons/radio.svg"
+          src="@/publicassets/icons/radio.svg"
           alt="expand current playlist/song"
         />
         <div
