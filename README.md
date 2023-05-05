@@ -5,9 +5,9 @@
 This is a single-page music player built with Vue completely from scratch! Discover new hits, search for your favorite tracks, save them to your playlist and more!
 Supports all devices and screen sizes!
 
-**Link to project:** http://recruiters-love-seeing-live-demos.com/
+**Link to project:** [VMusic live preview](https://vmusic.netlify.app/)
 
-![alt tag](http://placecorgi.com/1200/650)
+![Project view](https://user-images.githubusercontent.com/51524264/235886089-aca52e22-2e05-49fd-8ed7-946517b50050.png)
 
 ## How It's Made:
 
