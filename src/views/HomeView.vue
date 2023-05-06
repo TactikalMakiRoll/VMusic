@@ -75,7 +75,7 @@
             <p>{{ convertMStoMinutes(song.duration_ms) }}</p>
             <button
               class="mb-0.5 h-6 w-6 hover:brightness-200"
-              @click="toggleFavorite"
+              @click="toggleFavorite(song)"
             >
               <img
                 v-if="song.followed"
@@ -161,7 +161,9 @@ import { useProfileStore } from '../stores/profile';
 import {
   getFeaturedPlaylistTracks,
   getNewReleases,
-  checkArtistFollow
+  checkArtistFollow,
+  addArtistToFollows,
+  removeArtistFromFollows
 } from '../scripts/spotifyAPI.js';
 import {
   createAlbumBackground,
@@ -187,7 +189,7 @@ async function loadRecommendations() {
   featuredTracks.value = featuredTracks.value.map((song) => {
     return song.track;
   });
-  checkFeaturedFavoritesState();
+  await checkFeaturedFavoritesState();
   loading.value = false;
 }
 
@@ -195,9 +197,30 @@ onMounted(() => {
   loadRecommendations();
 });
 
-function toggleFavorite() {
+async function toggleFavorite(song) {
+  let isFollowed = song.followed;
+  let artist = song.artists[0].id;
+
   if (!profile.userCode) {
     emit('sendWarning', 'Log in to add songs to favorites');
+  }
+
+  if (!isFollowed) {
+    let status = await addArtistToFollows(artist);
+    if (status === 200) {
+      emit('sendWarning', 'Artist successfully followed!');
+      song.followed = true;
+    } else {
+      emit('sendWarning', 'Could not follow the artist, try again later');
+    }
+  } else {
+    let status = await removeArtistFromFollows(artist);
+    if (status === 200) {
+      emit('sendWarning', 'You are not following this artist anymore!');
+      song.followed = false;
+    } else {
+      emit('sendWarning', 'Could not unfollow the artist, try again later');
+    }
   }
 }
 

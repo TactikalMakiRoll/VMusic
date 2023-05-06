@@ -28,7 +28,12 @@
         <div
           class="absolute bottom-[-100%] w-full rounded-md border border-solid border-stone-800 bg-stone-900 py-2 text-center font-bold opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         >
-          <button v-if="profile.userCode">Log out</button>
+          <button
+            @click="logoutUser()"
+            v-if="profile.userCode"
+          >
+            Log out
+          </button>
           <button
             @click="authenticateUser"
             v-else
@@ -54,12 +59,6 @@
             'opacity-0': false
           }"
         ></div>
-      </button>
-      <button
-        @click="logoutUser()"
-        class="relative w-12 shrink-0 rounded-full px-2 py-2"
-      >
-        RESET
       </button>
     </div>
   </div>

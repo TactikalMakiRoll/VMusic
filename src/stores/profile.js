@@ -5,15 +5,18 @@ import { defineStore } from 'pinia';
 export const useProfileStore = defineStore('profile', () => {
   // a code that will be sent to Spotify for an access token
   const userCode = ref(null);
-  const clientId = ref("10fa63e5bae4490cbf422f6d3e5cebf6");
-  const profileName = ref("Guest");
+  if (localStorage.getItem('userCode')) {
+    userCode.value = localStorage.getItem('userCode');
+  }
+  const clientId = ref('10fa63e5bae4490cbf422f6d3e5cebf6');
+  const profileName = ref('Guest');
   const profileInfo = ref(null);
 
   // reset function for when user logs out
   function $reset() {
-    profileName.value = "Guest";
+    profileName.value = 'Guest';
     profileInfo.value = null;
     userCode.value = null;
   }
-  return {profileName, profileInfo, clientId, userCode, $reset};
+  return { profileName, profileInfo, clientId, userCode, $reset };
 });

@@ -124,4 +124,50 @@ async function checkArtistFollow(artistList){
     return artistFollow;
 }
 
-export {getToken, getGenres, getFeaturedPlaylistTracks, getNewReleases, checkArtistFollow};
+async function addArtistToFollows(artist){
+    let accessToken;
+    if(localStorage.getItem("currentToken")){
+        accessToken = localStorage.getItem("currentToken");
+    }
+    else{
+        accessToken = await getToken();
+    }
+    const requestHeader = new Headers({
+        "Authorization": " Bearer  " + accessToken
+    });
+    const response = await fetch(baseEndpoint + '/v1/me/following?type=artist&ids=' + artist, {
+        method: 'PUT',
+        headers: requestHeader,
+        body: JSON.stringify({ ids: artist })
+    });
+    if (!response.ok) {
+        const message = `An error has occured: ${response.status} ${response.text}`;
+        throw new Error(message);
+    }
+    return 200;
+}
+
+async function removeArtistFromFollows(artist){
+    let accessToken;
+    if(localStorage.getItem("currentToken")){
+        accessToken = localStorage.getItem("currentToken");
+    }
+    else{
+        accessToken = await getToken();
+    }
+    const requestHeader = new Headers({
+        "Authorization": " Bearer  " + accessToken
+    });
+    const response = await fetch(baseEndpoint + '/v1/me/following?type=artist&ids=' + artist, {
+        method: 'DELETE',
+        headers: requestHeader,
+        body: JSON.stringify({ ids: artist })
+    });
+    if (!response.ok) {
+        const message = `An error has occured: ${response.status} ${response.text}`;
+        throw new Error(message);
+    }
+    return 200;
+}
+
+export {getToken, getGenres, getFeaturedPlaylistTracks, getNewReleases, checkArtistFollow, addArtistToFollows, removeArtistFromFollows};

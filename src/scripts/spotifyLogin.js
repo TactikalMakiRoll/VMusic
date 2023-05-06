@@ -6,7 +6,8 @@ async function performLogin(clientId){
 
 async function getProfileInfo(clientId, code){
     const accessToken = await getAccessToken(clientId, code);
-    localStorage.setItem("currentToken", accessToken);
+    if(!localStorage.getItem("currentToken"))
+        localStorage.setItem("currentToken", accessToken);
     const profile = await fetchProfile(accessToken);
     console.log("profile info");
     console.log(profile);
