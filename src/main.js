@@ -13,6 +13,7 @@ watch(
   pinia.state,
   (state) => {
     localStorage.setItem('userCode', JSON.stringify(state.userCode));
+    console.log('saved User Code');
   },
   { deep: true }
 );

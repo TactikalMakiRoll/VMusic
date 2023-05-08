@@ -55,9 +55,16 @@ onMounted(() => {
   profile.userCode = params.get('code');
 
   if (profile.userCode) {
-    getProfileInfo(profile.clientId, profile.userCode);
+    fillProfileInfo();
   }
 });
+
+async function fillProfileInfo() {
+  const profileInfo = await getProfileInfo(profile.clientId, profile.userCode);
+
+  profile.profileInfo = profileInfo;
+  profile.profileName = profileInfo.display_name;
+}
 
 function showWarning(text) {
   warningText.value = text;
