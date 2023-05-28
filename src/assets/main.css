@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Font and scrollbar customization */
 html{
   font-family: 'Roboto', sans-serif;
   --scrollbar-secondary: rgba(0,178,255);
@@ -13,7 +14,6 @@ html{
   scrollbar-color: var(--scrollbar-secondary) var(--scrollbar-primary);
 }
 
-/* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
   width: 3px;
   height: 3px;
@@ -33,10 +33,12 @@ html{
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
 
+/* change font size on bigger screens */
 @media screen and (min-width:1920px) {
   html{
     font-size: 18px;
