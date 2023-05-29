@@ -13,12 +13,15 @@
                 aria-expanded="false"
             >
                 <img
-                    class="h-11 w-11 rounded-full"
-                    src="@/publicassets/images/profile.png"
+                    class="h-14 w-14 rounded-full"
+                    :src="profilePicture"
                     alt="profile icon"
                 />
-                <span class="mr-4 ml-3">{{ profile.profileName }}</span>
-                <button class="w-8 shrink-0 group-hover:brightness-200">
+                <span
+                    class="mr-4 ml-3 text-xl font-bold group-hover:text-purple-600 group-hover:brightness-200"
+                    >{{ profileName }}</span
+                >
+                <button class="w-8 shrink-0 group-hover:text-green-700 group-hover:brightness-200">
                     <img
                         class="object-contain"
                         src="@/publicassets/icons/expand.svg"
@@ -67,6 +70,7 @@
 <script setup>
 // Vue imports
 import { useRouter } from 'vue-router';
+import { computed } from 'vue';
 
 // store and API imports
 import { performLogin } from '../scripts/spotifyLogin.js';
@@ -75,9 +79,26 @@ import { useProfileStore } from '../stores/profile';
 // state variables
 const profile = useProfileStore();
 const router = useRouter();
+import defaultProfilePicture from '@/publicassets/images/profile.png';
+
+const profilePicture = computed(() => {
+    if (profile.profileInfo && profile.profileInfo.images[0]) {
+        return profile.profileInfo.images[0].url;
+    } else {
+        return defaultProfilePicture;
+    }
+});
+
+const profileName = computed(() => {
+    if (profile.profileInfo) {
+        return profile.profileInfo.display_name;
+    } else {
+        return 'Guest';
+    }
+});
 
 async function authenticateUser() {
-    profile.profileInfo = await performLogin(profile.clientId);
+    await performLogin(profile.clientId);
 }
 
 function logoutUser() {

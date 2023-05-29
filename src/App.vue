@@ -58,7 +58,9 @@ const warningText = ref('');
 // when entering the site, check if profile code is present in link address and use it to get profile information
 onMounted(function () {
     const params = new URLSearchParams(window.location.search);
-    profile.userCode = params.get('code');
+    if (params.get('code')) {
+        profile.userCode = params.get('code');
+    }
 
     if (profile.userCode) {
         fillProfileInfo();
@@ -77,7 +79,6 @@ async function fillProfileInfo() {
     const profileInfo = await getProfileInfo(profile.clientId, profile.userCode);
 
     profile.profileInfo = profileInfo;
-    profile.profileName = profileInfo.display_name;
     router.push('/');
 }
 
