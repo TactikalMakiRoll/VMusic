@@ -57,19 +57,20 @@ const warningText = ref('');
 
 // when entering the site, check if profile code is present in link address and use it to get profile information
 onMounted(function () {
+    console.log('App.vue onMounted');
     const params = new URLSearchParams(window.location.search);
     if (params.get('code')) {
         profile.userCode = params.get('code');
     }
 
-    if (profile.userCode) {
+    console.log('App.vue onMounted + profile user code: ');
+    console.log(profile.userCode);
+
+    if (profile.userCode && profile.userCode !== 'undefined') {
         fillProfileInfo();
         // Remove profile code from url
-        console.log('why though?');
         nextTick(() => {
-            console.log('why though? nextTick');
             // window.history.replaceState({}, 'title', 'home');
-            console.log('didnt work');
         });
     }
 });
@@ -78,8 +79,12 @@ onMounted(function () {
 async function fillProfileInfo() {
     const profileInfo = await getProfileInfo(profile.clientId, profile.userCode);
 
-    profile.profileInfo = profileInfo;
-    router.push('/');
+    if (profileInfo) {
+        profile.profileInfo = profileInfo;
+        router.push('/');
+    } else {
+        profile.profileInfo = undefined;
+    }
 }
 
 // Show/hide user warning

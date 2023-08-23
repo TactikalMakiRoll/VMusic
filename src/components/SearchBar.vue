@@ -17,10 +17,9 @@
                     :src="profilePicture"
                     alt="profile icon"
                 />
-                <span
-                    class="mr-4 ml-3 text-xl font-bold group-hover:text-purple-600 group-hover:brightness-200"
-                    >{{ profileName }}</span
-                >
+                <span class="mr-4 ml-3 text-xl font-bold group-hover:text-purple-700">{{
+                    profileName
+                }}</span>
                 <button class="w-8 shrink-0 group-hover:text-green-700 group-hover:brightness-200">
                     <img
                         class="object-contain"
@@ -33,7 +32,7 @@
                 >
                     <button
                         @click="logoutUser()"
-                        v-if="profile.userCode"
+                        v-if="profile.userCode && profile.userCode !== 'undefined'"
                     >
                         Log out
                     </button>
@@ -82,7 +81,13 @@ const router = useRouter();
 import defaultProfilePicture from '@/publicassets/images/profile.png';
 
 const profilePicture = computed(() => {
-    if (profile.profileInfo && profile.profileInfo.images[0]) {
+    console.log('profile Picture SearchBar');
+    console.log(profile.profileInfo);
+    if (
+        profile.profileInfo !== 'undefined' &&
+        profile.profileInfo !== null &&
+        profile.profileInfo.images[0]
+    ) {
         return profile.profileInfo.images[0].url;
     } else {
         return defaultProfilePicture;

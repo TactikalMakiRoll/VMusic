@@ -4,8 +4,26 @@ async function performLogin(clientId) {
     redirectToAuthCodeFlow(clientId);
 }
 async function getProfileInfo(clientId, code) {
-    // check if there is already an existing valid access token for an account and set one if it's not there
+    let accessToken = await checkToken(clientId, code);
+
+    const profile = await fetchProfile(accessToken);
+
+    console.log('profile info');
+    console.log(profile);
+
+    if (profile.error) {
+        console.log('returned undefined profile');
+        return undefined;
+    }
+
+    return profile;
+}
+
+async function checkToken(clientId, code) {
+    // check if there is already an existing valid access token for an account and set one if it's not there, also sending a request to check whether the token is still valid.
+
     let accessToken;
+
     if (!localStorage.getItem('currentToken')) {
         accessToken = await getAccessToken(clientId, code);
         localStorage.setItem('currentToken', accessToken);
@@ -13,12 +31,7 @@ async function getProfileInfo(clientId, code) {
         accessToken = localStorage.getItem('currentToken');
     }
 
-    const profile = await fetchProfile(accessToken);
-
-    console.log('profile info');
-    console.log(profile);
-
-    return profile;
+    return accessToken;
 }
 
 async function redirectToAuthCodeFlow(clientId) {
